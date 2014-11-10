@@ -2,6 +2,12 @@ language: java
 
 
 # command to run tests
+before_script:
+   - cd src
+   - mkdir bin
+   - export CLASSPATH=junitUtils/junit-4.11.jar:junitUtils/hamcrest-core-1.3.jar:src/:bin/
+
 script: 
-   - javac PruebaCalucadora.java
-   - java PruebaCalucadora
+
+   - javac -d bin src/test/CalculadoraTest.java 
+   - java org.junit.runner.JUnitCore test.CalculadoraTest
